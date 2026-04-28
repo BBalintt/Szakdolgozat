@@ -1,63 +1,132 @@
+/* Alap elrendezés */
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: large;
+  color: black;
+}
+
+body {
+  background-color: rgb(216, 199, 142);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .container {
-    display: flex;
-}
-form{
-    width:fit-content;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+footer {
+  margin-top: auto;
+}
+
+/* Általános stílusok */
+* {
+  cursor: url('resources/cursor.png'), default;
+  font-family: 'Playfair Display', serif;
+}
+
+a:hover,
+button:hover {
+  cursor: url('resources/cursor_click.png'), pointer;
+}
+
+button:focus {
+  outline: 3px solid #000;
+}
+
+ul {
+  list-style: none;
+}
+
+form {
+  width: fit-content;
+}
+
+.row {
+  margin-top: 1%;
+  display: flex;
+  text-align: center;
+}
+
+/* Navigáció */
+.nav-button {
+  background-color: transparent;
+  border: none;
+  color: rgba(0,0,0,0.65);
+  padding: 0.5rem 1rem;
+}
+
+.nav-button:hover {
+  color: #000000;
+}
+
+/* Dobozos megjelenítés */
 .box {
-    display: flex;
-    flex-direction: column;
-    border-style: solid;
-    border-color: black;
-    margin-left: 2px;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  margin-left: 2px;
 }
 
+.komment {
+  height: 200%;
+  border-style: solid;
+  border-color: black;
+}
+
+/* Checkbox alapú furulyalyuk megjelenítés */
 input[type="checkbox"] {
-    width: 40px; /* Fix szélesség */
-    height: 40px; /* Fix magasság */
-    appearance: none; /* Böngésző alapstílusok kikapcsolása */
-    border: 4px solid black; /* Látható keret */
-    background-color: white; /* Alap háttérszín */
-    border-radius: 100%;
-    margin-top: 5%;
+  width: 40px;
+  height: 40px;
+  appearance: none;
+  border: 4px solid black;
+  background-color: white;
+  border-radius: 100%;
+  margin-top: 5%;
 }
 
 input[type="checkbox"]:checked {
-    background-color: #000000; /* Kijelölve színezés */
-    border-color: #000000;
-}
-
-.row{
-    margin-top: 1%;
-    display: flex;
-    text-align: center;
-}
-
-.note-label {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-.komment{
-    height: 200%;
-    border-style: solid;
-    border-color: black;
-}
-
-.me-1
-{
-  width: auto;
+  background-color: #000000;
   border-color: #000000;
-  color: white;
-  border-radius: 100%;
 }
 
+/* Hangok és kártyák megjelenítése */
+.note-label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.note-slider {
+  overflow: hidden !important;
+  width: 100%;
+}
+
+.note-track {
+  display: flex;
+  gap: 12px;
+  padding: 8px 4px;
+}
+
+.note-card {
+  scroll-snap-align: start;
+}
+
+#noteContainer {
+  width: 103%;
+}
+
+/* Carousel vezérlők */
 .custom-carousel-control {
   width: 60px;
 }
@@ -70,6 +139,7 @@ input[type="checkbox"]:checked {
   right: -70px;
 }
 
+/* Furulyalyuk takarásának állapotai */
 .takaras {
   border: 1px solid black;
   background-color: white;
@@ -92,47 +162,14 @@ input[type="checkbox"]:checked {
   background: black;
 }
 
-html, body {
-  margin: 0;
-  min-height: 100%;
-  font-size: large;
-  color: black;
+.me-1 {
+  width: auto;
+  border-color: #000000;
+  color: white;
+  border-radius: 100%;
 }
 
-body {
-  /* padding-top: 1.5dvh; */
-  background-color: rgb(216, 199, 142);
-  background-size: cover;
-}
-
-* {
-    cursor: url('resources/cursor.png'), default;
-    font-family: 'Playfair Display', serif;
-}
-
-a:hover, button:hover {
-  cursor: url('resources/cursor_click.png'), pointer;
-}
-
-.note-slider {
-  overflow: hidden !important;
-  width: 100%;
-}
-
-.note-track{
-  display:flex;
-  gap:12px;
-  padding:8px 4px;
-}
-.note-card{
-  scroll-snap-align: start;
-}
-
-#noteContainer
-{
-  width: 103%;
-}
-
+/* 2D és 3D nézet közötti váltó */
 input.recorderToggle {
   width: 40px;
   height: 40px;
@@ -141,11 +178,9 @@ input.recorderToggle {
   background-color: white;
   position: relative;
   cursor: pointer;
-
   box-shadow: inset 10px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* szöveg */
 input.recorderToggle::before {
   color: black;
   content: "3D";
@@ -158,11 +193,11 @@ input.recorderToggle::before {
   font-weight: bold;
 }
 
+input.recorderToggle:checked {
+  box-shadow: inset 0 0 0 rgba(0,0,0,0);
+}
+
 input.recorderToggle:checked::before {
   color: white;
   content: "2D";
-}
-
-input.recorderToggle:checked {
-  box-shadow: inset 0 0 0 rgba(0,0,0,0);
 }
