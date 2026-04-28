@@ -19,7 +19,8 @@
         <p>Ha szeretnél hozzájárulni az oldalhoz csak regisztrálj és máris hozzáadhatsz új furulyákat, vagy bővítheted a már meglévő fogástáblákat.</p>
         <p>A regisztációhoz csak egy felhasználónév és egy jelszó szükséges.</p>
         <ul class="nav flex-column">
-          <li><a href="view/loader.php" class="nav-link text-black bg-light bg-opacity-50 rounded shadow">Furulyák</a></li>
+          <li><a href="view/tutorial.php" class="nav-link text-black bg-light bg-opacity-50 rounded shadow">Segédlet a fogástáblázatok olvasásához</a></li>
+          <li><a href="view/loader.php" class="nav-link text-black bg-light bg-opacity-50 rounded shadow">Fogástáblázatok</a></li>
           <?php
             session_start();
             if($_SESSION['rang']==1)
@@ -37,5 +38,6 @@
       </div>
     </div>
   </div>
+<?php include 'view/layouts/footer.php'; ?>
 </body>
 </html>
