@@ -51,11 +51,13 @@ function renderNoteCard(data, colors, username) {
 function createFingeringCard(holes, padded) {
   const fingering = document.createElement("div");
   fingering.className = "fingeringCard";
+  fingering.setAttribute("role", "list");
+  fingering.setAttribute("aria-label", "Furulyafogás lyukainak állapota");
 
   for (let j = 0; j < holes; j++) {
     fingering.innerHTML += `
-      <div class="row justify-content-center">
-        <input type="button" class="me-1 col-12 covering btn${padded[j]}" data-state="${padded[j]}">
+      <div class="row justify-content-center" role="listitem">
+        <input type="button" class="me-1 col-12 covering btn${padded[j]}" data-state="${padded[j]}" aria-label="${j + 1}. lyuk állapota">
       </div>
     `;
   }
@@ -92,24 +94,24 @@ function createNoteCardBody(data, padded, username) {
   const escapedNote = data.note.replace(/'/g, "\\'");
 
   cardBody.innerHTML = `
-    <canvas class="Canvas${data.note}" width="100" height="100" style="border:1px solid grey"></canvas>
+    <canvas class="Canvas${data.note}" width="100" height="100" style="border:1px solid grey" aria-label="${data.note} hang kottaképe"></canvas>
 
     <p class="fs-4 mb-3">${data.note}</p>
 
-    <button class="btn btn-primary" onclick="animateHere('${padded}'),playNote('${escapedNote}')">
+    <button class="btn btn-primary" onclick="animateHere('${padded}'),playNote('${escapedNote}')" aria-label="${data.note} hang lejátszása">
       ▶ Lejátszás
     </button>
 
     <div class="row">
-      <button id="upvote-${data.fingering_tableID}" class="col-6" onclick="vote(1, '${data.fingering_tableID}')" style="color: green; background-color: transparent; border-color: transparent">⯅</button>
-      <button id="downvote-${data.fingering_tableID}" class="col-6" onclick="vote(-1, '${data.fingering_tableID}')" style="color: red; background-color: transparent; border-color: transparent">⯆</button>
+      <button id="upvote-${data.fingering_tableID}" class="col-6" onclick="vote(1, '${data.fingering_tableID}')" aria-label="${data.note} fogás pozitív értékelése" style="color: green; background-color: transparent; border-color: transparent">⯅</button>
+      <button id="downvote-${data.fingering_tableID}" class="col-6" onclick="vote(-1, '${data.fingering_tableID}')" aria-label="${data.note} fogás negatív értékelése" style="color: red; background-color: transparent; border-color: transparent">⯆</button>
       <p>${data.username}</p>
     </div>
   `;
 
   if (username === data.username) {
     cardBody.innerHTML += `
-      <button class="btn btn-danger" onclick="deleteFingering('${data.fingering_tableID}')">
+      <button class="btn btn-danger" onclick="deleteFingering('${data.fingering_tableID}')" aria-label="${data.note} fogás törlése">
         Törlés
       </button>
     `;
@@ -128,20 +130,21 @@ function renderEditableFingering(data, idx, furulyaRow, pipeCount) {
   for (let j = 0; j < holes; j++) {
     col.innerHTML += `
       <div class="row justify-content-center">
-        <input type="button" class="me-1 col-12 covering${idx} btn0" data-state="0" onclick="cover(this)">
+        <input type="button" class="me-1 col-12 covering${idx} btn0" data-state="0" onclick="cover(this)" aria-label="${j + 1}. lyuk takarásának módosítása">
       </div>
     `;
   }
 
   col.innerHTML += `
     <div class="row">
-      <input type="text" class="note${idx}" oninput="inputCheck(event)">
+      <label class="visually-hidden" for="note${idx}">Hang megadása</label>
+      <input type="text" id="note${idx}" class="note${idx}" oninput="inputCheck(event)" aria-label="Hang megadása">
     </div>
   `;
 
   col.innerHTML += `
     <div class="row">
-      <input type="button" value="Hang mentése" onclick="saveNote(${idx})">
+      <input type="button" value="Hang mentése" onclick="saveNote(${idx})" aria-label="Hang mentése">
     </div>
   `;
 
