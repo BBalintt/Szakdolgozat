@@ -8,13 +8,14 @@ if (session_status() === PHP_SESSION_NONE) {
 $host = 'mysql.caesar.elte.hu';
 $db   = 'hbalintt';
 $user = 'hbalintt';
-$pass = 'rHCIquNiAs1vURiI';
+$pass = 'Jelszó helye';
 $dsn  = "mysql:host=$host;dbname=$db;charset=utf8";
 try {
     $pdo = new PDO($dsn, $user, $pass);
 // Hibakezelés beállítása
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) { 
+}
+catch (PDOException $e) { 
     echo "Kapcsolat sikertelen: " . $e->getMessage();
 }
 
@@ -32,7 +33,8 @@ function getRecorder()
         echo 'import { fillRecorderDropdown } from "../viewmodel/change_recorder.js";';
         echo 'fillRecorderDropdown(' . json_encode($rows) . ');';
         echo '</script>';
-    } else {
+    }
+    else {
         echo "Nincs adat a táblában.";
     }
 }
@@ -253,25 +255,29 @@ function recorderExists()
     header('Content-Type: application/json; charset=utf-8');
 
     $input = json_decode(file_get_contents('php://input'), true);
-    $recorderID = $input['recorderID'] ?? null;
+    $recorderID = $input['RecorderID'] ?? null;
 
     if ($recorderID === null) {
-        echo json_encode(["error" => "Hiányzó recorderID"]);
-        exit;
+        http_response_code(400);
+        echo json_encode(["error" => "Hiányzó RecorderID"]);
+        return;
     }
 
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM recorders WHERE RecorderID = ?");
     $stmt->execute([$recorderID]);
     $exists = $stmt->fetchColumn();
 
-    if($exists ==0) {
-        if (!isset($_SESSION['username'],$input['description'])) {
+    if ($exists == 0) {
+        if (!isset($_SESSION['username'], $input['description'])) {
+            http_response_code(401);
             echo json_encode(["error" => "Nincs bejelentkezve"]);
-            exit;
+            return;
         }
+
         $stmt = $pdo->prepare("INSERT INTO recorders (RecorderID, description, UserID) VALUES (?, ?, ?)");
         $stmt->execute([$recorderID, $input['description'] ?? "", $_SESSION['username']]);
     }
+
     echo json_encode(["exists" => $exists > 0]);
 }
 
@@ -361,7 +367,7 @@ $action = $input['action'] ?? null;
 if ($action === null)
 {
     getRecorder();
-} 
+}
 else 
 {
     switch ($action ?? '') {
