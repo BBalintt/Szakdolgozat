@@ -28,34 +28,41 @@
 <body class="d-flex flex-column min-vh-100">
     <?php include 'layouts/header.php'; ?>
 
-    <main class="container">
+    <main class="container" id="main-content">
         <div class="container-fluid">
             <div class="row justify-content-center">
 
                 <!-- Bejelentkezési/regisztrációs űrlap -->
-                <form action="" class="col-md-8 col-12" id="loginForm">
+                <form action="" class="col-10 col-md-6 col-lg-4" id="loginForm" aria-labelledby="authTitle">
                     <div class="bg-light bg-opacity-25 p-3 rounded shadow text-center mb-3 mt-3">
                         
-                        <!-- Űrlap címe az aktuális mód alapján változik -->
+                        <!-- Űrlap címe -->
                         <h2 class="text-black" id="authTitle">Bejelentkezés</h2>
 
-                        <!-- Felhasználónév megadása -->
+                        <!-- Felhasználónév -->
                         <div class="mb-3">
                             <label for="username" class="form-label text-black">Felhasználónév</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <input type="text" class="form-control" id="username" name="username" required aria-required="true" autocomplete="username">
                         </div>
 
-                        <!-- Jelszó megadása -->
+                        <!-- Jelszó -->
                         <div class="mb-3">
                             <label for="password" class="form-label text-black">Jelszó</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required aria-required="true" autocomplete="current-password">
                         </div>
 
-                        <!-- Hitelesítés indítása -->
-                        <button type="submit" id="authButton" class="btn btn-primary">Bejelentkezés</button>
+                        <!-- Hibák / visszajelzés -->
+                        <div id="authFeedback" class="text-danger" aria-live="polite"></div>
 
-                        <!-- Váltás bejelentkezés és regisztráció között -->
-                        <button id="authToggle" type="button" class="btn btn-link" onclick="changeAuth()">Még nincs fiókom</button>
+                        <!-- Bejelentkezés -->
+                        <button type="submit" id="authButton" class="btn btn-primary" aria-label="Bejelentkezés vagy regisztráció végrehajtása">
+                            Bejelentkezés
+                        </button>
+
+                        <!-- Mód váltás -->
+                        <button id="authToggle" type="button" class="btn btn-link" onclick="changeAuth()" aria-label="Váltás regisztrációra vagy bejelentkezésre">
+                            Még nincs fiókom
+                        </button>
                     </div>
                 </form>
 

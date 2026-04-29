@@ -1,5 +1,5 @@
 <!-- Oldal lábléce -->
-<footer class="mt-auto bg-light bg-opacity-25 shadow py-2 text-center">        
+<footer class="mt-auto bg-light bg-opacity-25 shadow py-2 text-center" role="contentinfo" aria-label="Oldal lábléc">
     <p class="mb-1 fw-bold">FurulyatáR</p>
     <p class="mb-1">Szakdolgozat – Furulyák és fogások kezelése</p>
     <small>

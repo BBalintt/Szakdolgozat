@@ -7,13 +7,13 @@
 </script>
 
 <div class="container-fluid justify-content-center row">
-<header class="row navbar navbar-expand-md bg-light bg-opacity-25 rounded shadow col-11">
+<header class="row navbar navbar-expand-md bg-light bg-opacity-25 rounded shadow col-11" role="banner">
     <div class="d-flex">
         <h1 class="navbar-brand start-50 col-2">FurulyatáR</h1>
         <div class="col-5 d-block d-lg-none"></div>
 
-        <div class="col-lg-10 col-5 justify-content-end">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <nav class="col-lg-10 col-5 justify-content-end" aria-label="Fő navigáció">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Menü megnyitása">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -41,7 +41,7 @@
                     // Bejelentkezett felhasználó kezelése
                     if (isset($_SESSION['username'])) {
                         echo '<li class="nav-item nav-link">Üdv, '.$_SESSION['username'].'</li>';
-                        echo '<li class="nav-item"><button class="nav-button" onclick="signout()">Kijelentkezés</button></li>';
+                        echo '<li class="nav-item"><button class="nav-button" onclick="signout()" aria-label="Kijelentkezés">Kijelentkezés</button></li>';
                     }
 
                     echo navLink('Kezdőlap', $base.'index.php', $current, 'index.php');
@@ -51,14 +51,16 @@
                     if (isset($_SESSION['rang']) && $_SESSION['rang'] == 1) {
                         echo navLink('Új furulya hozzáadása', $base.'view/recorders.php', $current, 'recorders.php');
                         echo navLink('Új fogás hozzáadása', $base.'view/fingerings.php', $current, 'fingerings.php');
-                    } else {
+                    }
+                    else {
                         echo navLink('Bejelentkezés', $base.'view/signin.php', $current, 'signin.php');
                     }
                     ?>
 
-                    <li class="nav-item"><div id="navbar"></div></li>
+                    <li class="nav-item"><div id="navbar" aria-label="3D nézet kapcsoló helye"></div></li>
                 </ul>
             </div>
-        </div>
+        </nav>
     </div>
 </header>
+</div>

@@ -1,30 +1,34 @@
-<!-- Szűrőpanel megnyitása/bezárása (Bootstrap collapse) -->
-<button class="btn col-12" type="button" data-bs-toggle="collapse" data-bs-target="#downfilter" aria-expanded="false" aria-controls="downfilter">
+<!-- Szűrőpanel megnyitása/bezárása -->
+<button class="btn col-12" type="button" data-bs-toggle="collapse" data-bs-target="#downfilter" aria-expanded="false" aria-controls="downfilter" aria-label="Szűrőpanel megnyitása vagy bezárása">
   Szűrők <span aria-hidden="true">⧨</span>
 </button>
 
-<div id="downfilter" class="collapse">
-  <h2 class="visually-hidden">Szűrő beállítások</h2>
+<div id="downfilter" class="collapse" role="region" aria-labelledby="filterTitle">
+  <h2 id="filterTitle" class="visually-hidden">Szűrő beállítások</h2>
 
-  <!-- Értékelés alapú szűrés csúszkával -->
+  <!-- Értékelés alapú szűrés -->
   <label for="MinReputation" class="form-label mb-0">
     Minimális értékelés: <span id="reputationValue">0</span>
   </label>
-  <input type="range" class="form-range" min="-25" max="25" id="MinReputation" value="0" aria-describedby="reputationValue">
+  <input type="range" class="form-range" min="-25" max="25" id="MinReputation" value="0" aria-describedby="reputationValue" aria-label="Minimális értékelés beállítása">
 
-  <!-- Felhasználó szerinti szűrés (görgethető lista) -->
-  <div id="colorContainer" class="d-flex align-items-center gap-2">
-    <button class="btn btn-outline-secondary" type="button" id="prevColor" aria-label="Előző felhasználók"><span aria-hidden="true">‹</span></button>
+  <!-- Felhasználó szerinti szűrés -->
+  <div id="colorContainer" class="d-flex align-items-center gap-2" aria-label="Felhasználó szerinti szűrés">
+    <button class="btn btn-outline-secondary" type="button" id="prevColor" aria-label="Előző felhasználók">
+      <span aria-hidden="true">‹</span>
+    </button>
 
-    <div id="colorSlider" class="d-flex overflow-auto color-slider">
+    <div id="colorSlider" class="d-flex overflow-auto color-slider" tabindex="0" aria-label="Görgethető felhasználó lista">
       <div id="colorTrack" class="d-flex gap-2" role="listbox" aria-label="Felhasználó választó" aria-orientation="horizontal"></div>
     </div>
 
-    <button class="btn btn-outline-secondary" type="button" id="nextColor" aria-label="Következő felhasználók"><span aria-hidden="true">›</span></button>
+    <button class="btn btn-outline-secondary" type="button" id="nextColor" aria-label="Következő felhasználók">
+      <span aria-hidden="true">›</span>
+    </button>
   </div>
 
   <!-- Szűrő alkalmazása -->
-  <button class="btn" type="button" onclick="useFilter()" aria-label="Szűrő alkalmazása a kiválasztott beállításokkal">
+  <button class="btn" type="button" onclick="useFilter()" aria-label="Szűrő alkalmazása">
     Szűrő alkalmazása
   </button>
 </div>
