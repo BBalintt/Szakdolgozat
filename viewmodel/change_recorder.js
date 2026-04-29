@@ -66,7 +66,7 @@ export async function loadRec(modes) {
 
   recorderName = options.value;
 
-  const pipeCount = getPipeCount(arr, recorderName);
+  const pipeCount = arr.filter(element => element.RecorderID === recorderName).length;
   const furulyaRow = createFurulyaContainer(arr, recorderName);
 
   if (modes === 0) {
@@ -90,7 +90,8 @@ async function loadDescription(recorderName) {
     if (desc) {
       desc.innerHTML = data.description || "";
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error("Fetch hiba:", error);
   }
 }
@@ -100,7 +101,8 @@ async function loadUsername(recorderName) {
   try {
     const data = await loadUsernameFromServer(recorderName);
     return data.username;
-  } catch (error) {
+  }
+  catch (error) {
     console.error("Fetch hiba:", error);
     return null;
   }
@@ -116,7 +118,8 @@ async function loadNoteModel(recorderName, modes, pipeCount, furulyaRow, usernam
     }
 
     renderNotes(data.data, modes, pipeCount, furulyaRow, username);
-  } catch (error) {
+  }
+  catch (error) {
     console.error("Fetch hiba:", error);
   }
 }

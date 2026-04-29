@@ -27,11 +27,13 @@ export function authenticate() {
         // Sikeres bejelentkezés → főoldalra irányítás
         if (authMode === "login") {
           window.location.href = "../index.php";
-        } else {
+        }
+        else {
           // Sikeres regisztráció visszajelzés
           alert("Sikeres regisztráció!");
         }
-      } else {
+      }
+      else {
         // Hibaüzenet megjelenítése
         alert("Hiba: " + data.error);
       }
@@ -51,7 +53,8 @@ export function changeAuth() {
     title.innerText = "Regisztráció";
     button.innerText = "Regisztráció";
     toggleButton.innerText = "Már van fiókom";
-  } else {
+  }
+  else {
     authMode = "login";
     title.innerText = "Bejelentkezés";
     button.innerText = "Bejelentkezés";
@@ -73,10 +76,12 @@ export function signout() {
       // Admin oldalakról visszairányítás, egyébként frissítés
       if(!location.href.includes('fingerings') && !location.href.includes('recorders')) {
         location.reload();
-      } else {
+      }
+      else {
         location.href='/furulyatar/index.php';
       }
-    } else {
+    }
+    else {
       alert("Hiba a kijelentkezés során: " + data.error);
     }
   });

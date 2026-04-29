@@ -8,7 +8,8 @@ export function renderNotes(notes, modes, pipeCount, furulyaRow, username) {
   notes.forEach((data, idx) => {
     if (modes === 0) {
       renderNoteCard(data, colors, username);
-    } else if (modes === 1) {
+    }
+    else if (modes === 1) {
       renderEditableFingering(data, idx, furulyaRow, pipeCount);
     }
   });
@@ -138,14 +139,18 @@ function renderEditableFingering(data, idx, furulyaRow, pipeCount) {
   col.innerHTML += `
     <div class="row">
       <label class="visually-hidden" for="note${idx}">Hang megadása</label>
-      <input type="text" id="note${idx}" class="note${idx}" oninput="inputCheck(event)" aria-label="Hang megadása">
+      <div class="col-5"></div>
+      <input type="text" class="col-2" id="note${idx}" class="note${idx}" oninput="inputCheck(event)" aria-label="Hang megadása">
+      <div class="col-5"></div>
     </div>
   `;
 
   col.innerHTML += `
     <div class="row">
-      <input type="button" value="Hang mentése" onclick="saveNote(${idx})" aria-label="Hang mentése">
-    </div>
+      <div class="col-3"></div>
+      <input type="button" class="col-6" value="Hang mentése" onclick="saveNote(${idx})" aria-label="Hang mentése">
+      <div class="col-3"></div>
+      </div>
   `;
 
   furulyaRow.appendChild(col);

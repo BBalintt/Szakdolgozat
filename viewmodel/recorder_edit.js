@@ -31,7 +31,8 @@ export function deleteFingering(fingeringID) {
     .then(response => {
       if (response.ok) {
         location.reload();
-      } else {
+      }
+      else {
         console.error("Hiba a fingering törlése során.");
       }
     })
@@ -55,7 +56,8 @@ export function vote(value, fingeringID) {
 
         upvoteButton.style.color = "#354b37";
         downvoteButton.style.color = "#4d2f2f";
-      } else {
+      }
+      else {
         console.error("Hiba a szavazat leadása során.");
       }
     })
@@ -84,7 +86,8 @@ export function saveNote(num) {
     .then(response => {
       if (response.ok) {
         alert("Hang mentve!");
-      } else {
+      }
+      else {
         return response.text().then(text => {
           console.error("Hiba a mentés során:", response.status, text);
         });

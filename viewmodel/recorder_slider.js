@@ -27,14 +27,17 @@ function moveSlider(slider, direction) {
     // Ha az elején járunk, visszaugrás a végére
     if (slider.scrollLeft <= 0) {
       slider.scrollLeft = maxScroll;
-    } else {
+    }
+    else {
       slider.scrollBy({ left: -width, behavior: "smooth" });
     }
-  } else {
+  }
+  else {
     // Ha a végén járunk, visszaugrás az elejére
     if (slider.scrollLeft >= maxScroll - 1) {
       slider.scrollLeft = 0;
-    } else {
+    }
+    else {
       slider.scrollBy({ left: width, behavior: "smooth" });
     }
   }

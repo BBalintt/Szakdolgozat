@@ -162,7 +162,8 @@ export function playNote(name, playFn = playHz) {
 
   if (accidental == "flat") {
     freq = freq / (2 ** (1 / 12));
-  } else if (accidental == "sharp") {
+  }
+  else if (accidental == "sharp") {
     freq = freq * (2 ** (1 / 12));
   }
 

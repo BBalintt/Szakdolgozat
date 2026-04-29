@@ -4,13 +4,6 @@ export function getRecordersFromStorage() {
   return raw ? JSON.parse(raw) : [];
 }
 
-// Egy adott furulya csöveinek számának meghatározása
-export function getPipeCount(recorders, recorderName) {
-  return recorders
-    .filter(element => element.RecorderID === recorderName)
-    .length;
-}
-
 // Hangok rendezése zenei sorrend szerint
 export function sortNotes(notes) {
   notes.sort((a, b) => noteValue(a.note) - noteValue(b.note));

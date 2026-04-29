@@ -22,7 +22,6 @@ export function holeInput() {
 // Új furulya adatainak mentése
 export async function saveRecorder() {
   const recorderName = document.getElementById('name').value.trim();
-
   if (recorderName === '') {
     alert('Kérlek add meg a furulya típusát!');
     return;
@@ -38,7 +37,7 @@ export async function saveRecorder() {
 
     // Minden csőhöz külön rekord mentése
     for (let i = 0; i < pipeCount; i++) {
-      try {
+      try {        
         const response = await fetch('../model/database.php', {
           method: 'POST',
           headers: {
@@ -56,14 +55,16 @@ export async function saveRecorder() {
           console.error('Hiba a mentés során:', response.status, text);
           return;
         }
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Fetch hiba:', error);
         return;
       }
     }
 
     alert('Furulya sikeresen mentve!');
-  } else {
+  }
+  else {
     console.log(exists);
     alert('Ez a furulya típus már létezik!');
   }

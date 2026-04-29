@@ -19,29 +19,37 @@ export function changeView() {
   if (checkbox.checked) {
     rendererFull();
 
-    form.style.height = parent.clientHeight * 0.1;
-    slider.style.height = parent.clientHeight * 0.8;
-    container.style.height = parent.clientHeight * 0.5;
+    slider.style.height = parent.clientHeight * 0.5+"px";
 
     // 3D nézetben a 2D fogáskártyák elrejtése
     for (let fingering of fingerings) {
       fingering.style.height = "0%";
       fingering.style.visibility = "hidden";
+      fingering.childNodes.forEach(element => {
+          if (element.nodeType === Node.ELEMENT_NODE) {
+              element.style.visibility = "hidden";
+          }
+        });
     }
-  } else {
+  }
+  else {
     rendererNull();
 
-    form.style.height = parent.clientHeight * 0.1;
-    slider.style.height = parent.clientHeight * 1;
-    container.style.height = parent.clientHeight * 0.75;
-    container.style.marginTop = "0%";
+    slider.style.height = parent.clientHeight * 2+"px";
 
     // 2D nézetben a fogáskártyák visszaállítása
     for (let fingering of fingerings) {
       fingering.style.height = "100%";
-
-      if (!fingering.dataset.hidden) {
+      if (fingering.dataset.hidden!="true") {
         fingering.style.visibility = "visible";
+        fingering.childNodes.forEach(element => {
+          if (element.nodeType === Node.ELEMENT_NODE) {
+            if(fingering.dataset.hidden!="true")
+            {
+              element.style.visibility = "visible";
+            }
+          }
+        });
       }
     }
   }
@@ -64,10 +72,12 @@ export async function setupRecorderView(recorderName) {
     if (sw) {
       sw.checked = false;
       sw.onclick = () => changeView();
-    } else {
+    }
+    else {
       createRecorderToggle();
     }
-  } else {
+  }
+  else {
     if (sw) sw.remove();
 
     rendererNull();
@@ -114,7 +124,8 @@ async function checkFileExists(url) {
     });
 
     return response.status === 200;
-  } catch {
+  }
+  catch {
     return false;
   }
 }
@@ -154,7 +165,8 @@ export function animateHere(note) {
     if (lastNote[i] != note[i]) {
       if (note[i] == "1") {
         action = fingerActions[note.length + i];
-      } else {
+      }
+      else {
         action = fingerActions[i];
       }
 
@@ -164,7 +176,8 @@ export function animateHere(note) {
         if (note[i] !== "0") {
           action.timeScale = 100;
           action.play();
-        } else {
+        }
+        else {
           action.timeScale = -1;
           action.play();
         }

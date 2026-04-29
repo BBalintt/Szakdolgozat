@@ -47,7 +47,8 @@ function drawLedgerLines(ctx, note) {
     for (let i = 80; i <= note.octav; i += 10) {
       drawLedgerLine(ctx, i);
     }
-  } else if (note.octav < 25) {
+  }
+  else if (note.octav < 25) {
     for (let i = 20; i >= note.octav; i -= 10) {
       drawLedgerLine(ctx, i);
     }
@@ -72,7 +73,8 @@ function drawAccidental(ctx, note) {
 
   if (!note.accidentals) {
     ctx.fillText("♭", 25, note.octav + 5);
-  } else {
+  }
+  else {
     ctx.fillText("♯", 25, note.octav + 7);
   }
 }

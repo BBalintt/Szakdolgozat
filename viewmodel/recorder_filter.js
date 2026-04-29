@@ -9,7 +9,8 @@ export async function loadFilter() {
     document.getElementById("filter").innerHTML = html;
 
     initFilterUI();
-  } catch (err) {
+  }
+  catch (err) {
     console.error("Hiba a betöltésnél:", err);
   }
 }
@@ -32,7 +33,8 @@ export function useFilter() {
         });
 
         card.style.visibility = "hidden";
-      } else {
+      }
+      else {
         card.style.width = "";
 
         card.childNodes.forEach(element => {
