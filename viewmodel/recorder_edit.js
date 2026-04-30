@@ -75,11 +75,15 @@ export function saveNote(num) {
   });
 
   fingeringCode = fingeringCode.split("").reverse().join("");
-
+  if (document.getElementById("note" + num)?.value == undefined) {
+    alert("Ismeretlen hiba");
+    return;
+  }
+  alert(document.getElementById("note" + num)?.value);
   saveNoteToServer({
     action: "noteRepository",
     RecorderID: document.getElementById("chooserec").value,
-    note: document.querySelector(".note" + num)?.value || "",
+    note: document.getElementById("note" + num)?.value || "",
     fingering: fingeringCode,
     pipe: num
   })

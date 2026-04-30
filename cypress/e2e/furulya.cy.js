@@ -92,31 +92,4 @@ describe('FurulyatáR alap tesztek', () => {
     expect(arr).to.include('Furulya sikeresen mentve!');
   });
   });
-
-  /*it('bejelentkezés után új hangot/fogást ad hozzá', () => {
-  cy.contains('a', 'Bejelentkezés').click();
-  cy.url().should('include', 'signin.php');
-
-  cy.get('#username').type('123');
-  cy.get('#password').type('123');
-
-  cy.get('#loginForm').submit();
-
-  cy.contains('a', 'Új fogás hozzáadása', { timeout: 10000 }).click();
-
-  cy.url().should('include', 'fingerings.php');
-
-  cy.get('#chooserec', { timeout: 10000 }).select(1);
-
-  cy.get('#note').type('C');
-
-  // példa: első lyuk állapotának váltása
-  cy.get('.hole, .fingeringButton, button[data-state]').first().click();
-
-  cy.get('button').contains('Mentés').click();
-
-  cy.on('window:alert', (text) => {
-    expect(text).to.contain('sikeresen');
-  });
-  });*/
 });

@@ -18,7 +18,6 @@ import {
 // Furulyák és hangok feldolgozását segítő függvények
 import {
   getRecordersFromStorage,
-  getPipeCount,
   sortNotes
 } from "./recorder_utils.js";
 

@@ -31,13 +31,25 @@ export async function saveRecorder() {
     recorderName,
     document.getElementById('description').value.trim()
   );
+  const pipeCount = parseInt(document.getElementById('pipe_number').value, 10);
 
-  if (!exists) {
-    const pipeCount = parseInt(document.getElementById('pipe_number').value, 10);
+  let isNull = false;
+  if (pipeCount < 1) {
+    alert("A csövek száma legyen legalább egy");
+    isNull = true;
+  }
+  for (let i = 0; i < pipeCount; i++) {
+    if (document.getElementById('holes' + (i + 1)).value == 0) {
+      alert("A lyukak száma legyen legalább egy");
+      isNull = true;
+    }
+  }
+
+  if (!exists && !isNull) {
 
     // Minden csőhöz külön rekord mentése
     for (let i = 0; i < pipeCount; i++) {
-      try {        
+      try {
         const response = await fetch('../model/database.php', {
           method: 'POST',
           headers: {
@@ -64,7 +76,7 @@ export async function saveRecorder() {
 
     alert('Furulya sikeresen mentve!');
   }
-  else {
+  else if (!isNull) {
     console.log(exists);
     alert('Ez a furulya típus már létezik!');
   }

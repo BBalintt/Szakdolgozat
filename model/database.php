@@ -6,16 +6,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Adatbázis-kapcsolat adatai
 $host = 'mysql.caesar.elte.hu';
-$db   = 'hbalintt';
+$db = 'hbalintt';
 $user = 'hbalintt';
-$pass = 'Jelszó helye';
-$dsn  = "mysql:host=$host;dbname=$db;charset=utf8";
+$pass = 'rHCIquNiAs1vURiI';
+$dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 try {
     $pdo = new PDO($dsn, $user, $pass);
-// Hibakezelés beállítása
+    // Hibakezelés beállítása
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) { 
+} catch (PDOException $e) {
     echo "Kapcsolat sikertelen: " . $e->getMessage();
 }
 
@@ -33,8 +32,7 @@ function getRecorder()
         echo 'import { fillRecorderDropdown } from "../viewmodel/change_recorder.js";';
         echo 'fillRecorderDropdown(' . json_encode($rows) . ');';
         echo '</script>';
-    }
-    else {
+    } else {
         echo "Nincs adat a táblában.";
     }
 }
@@ -125,9 +123,8 @@ function noteModel()
         ]);
         exit;
     }
-    
-    if($input['modes']==0)
-    {
+
+    if ($input['modes'] == 0) {
         $sql = "SELECT 
                     pipes.ID,
                     pipes.holecount,
@@ -143,9 +140,7 @@ function noteModel()
                 JOIN fingering ON fingering_table.fingeringID = fingering.ID
                 JOIN users ON fingering_table.UserID = users.username
                 WHERE pipes.RecorderID = :name";
-    }
-    else if($input['modes']==1)
-    {
+    } else if ($input['modes'] == 1) {
         $sql = "SELECT 
                     pipes.ID,
                     pipes.holecount,
@@ -153,7 +148,7 @@ function noteModel()
                 FROM pipes 
                 WHERE pipes.RecorderID = :name";
     }
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['name' => $name]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -200,7 +195,7 @@ function noteRepository()
 
     $input = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($input['RecorderID'], $input['fingering'], $input['note'], $input['pipe'])) {
+    if (!isset($input['RecorderID']) || !isset($input['fingering']) || !isset($input['note']) || !isset($input['pipe'])) {
         echo json_encode(["error" => "Missing required input fields RecorderID: " . ($input['RecorderID'] ?? 'not provided') . ", fingering: " . ($input['fingering'] ?? 'not provided') . ", note: " . ($input['note'] ?? 'not provided') . ", pipe: " . ($input['pipe'] ?? 'not provided')]);
         throw new Exception("Missing required input fields");
     }
@@ -285,11 +280,11 @@ function recorderExists()
 function recorderRepository()
 {
     global $pdo;
-    
+
     $input = json_decode(file_get_contents('php://input'), true);
 
     if (!isset($input['RecorderID'], $input['holecount'])) {
-        echo json_encode(["error" => "Missing required input fields RecorderID: " . ($input['RecorderID'] ?? 'not provided') . ", holecount: " . ($input['holecount'] ?? 'not provided') . ", description: " . ($input['description'] ?? 'not provided'). ", username: " . ($_SESSION['username'] ?? 'not provided')]);
+        echo json_encode(["error" => "Missing required input fields RecorderID: " . ($input['RecorderID'] ?? 'not provided') . ", holecount: " . ($input['holecount'] ?? 'not provided') . ", description: " . ($input['description'] ?? 'not provided') . ", username: " . ($_SESSION['username'] ?? 'not provided')]);
         throw new Exception("Missing required input fields");
     }
 
@@ -364,12 +359,9 @@ function logout()
 $input = json_decode(file_get_contents('php://input'), true);
 $action = $input['action'] ?? null;
 
-if ($action === null)
-{
+if ($action === null) {
     getRecorder();
-}
-else 
-{
+} else {
     switch ($action ?? '') {
         case 'getRecorder':
             getRecorder();

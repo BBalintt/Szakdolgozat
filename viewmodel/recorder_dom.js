@@ -2,6 +2,13 @@
 export function clearNoteCards() {
   const cards = document.getElementsByClassName("note-card");
   Array.from(cards).forEach(elem => elem.remove());
+  const threeD = document.getElementById("recorderToggle");
+  if (threeD != null && threeD.checked) {
+    const slider = document.getElementById("noteSlider");
+    const parent = slider.parentElement;
+    slider.style.height = parent.clientHeight * 2 + "px";
+    alert("I was here");
+  }
 }
 
 // A furulya szerkesztéséhez szükséges konténer létrehozása

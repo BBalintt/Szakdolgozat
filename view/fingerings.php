@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,16 +43,21 @@
 
                 <!-- Furulya kiválasztása -->
                 <form method="POST" id="formContainer" class="mitgard col-8 col-md-6 col-xl-4 p-3">
-                    <label for="chooserec" class="form-label fw-bold">Furulya kiválasztása                     <a href="tutorial.php" title="Ha van a furulyán hátsó lyuk, akkor az mindig a legfelső karika. Ezután az elülső lyukak következnek fentről lefelé, a síptól a furulya vége felé haladva.">ⓘ</a></label>
-                    <select name="chooserec" id="chooserec" class="form-select" onchange="loadRec(1)" aria-describedby="recorderHelp">
+                    <label for="chooserec" class="form-label fw-bold">Furulya kiválasztása <a href="tutorial.php"
+                            title="Ha van a furulyán hátsó lyuk, akkor az mindig a legfelső karika. Ezután az elülső lyukak következnek fentről lefelé, a síptól a furulya vége felé haladva.">ⓘ</a></label>
+                    <select name="chooserec" id="chooserec" class="form-select" onchange="loadRec(1)"
+                        aria-describedby="recorderHelp">
                         <option value="">Válassz egy furulyát</option>
                     </select>
-                    <p id="recorderHelp" class="form-text text-dark">A kiválasztott furulyához tartozó fogások ezután jelennek meg.</p>
+                    <p id="recorderHelp" class="form-text text-dark">A kiválasztott furulyához tartozó fogások ezután
+                        jelennek meg.</p>
                 </form>
 
                 <!-- Hangok megjelenítésére szolgáló görgethető sáv -->
-                <section id="noteContainer" class="d-flex align-items-center gap-2 col-12" aria-label="Hangok és fogások listája">
-                    <div id="noteSlider" class="d-flex overflow-auto note-slider" tabindex="0" aria-label="Görgethető hanglista">
+                <section id="noteContainer" class="d-flex align-items-center gap-2 col-12"
+                    aria-label="Hangok és fogások listája">
+                    <div id="noteSlider" class="d-flex overflow-auto note-slider" tabindex="0"
+                        aria-label="Görgethető hanglista">
                         <div id="noteTrack" class="d-flex" role="list" aria-label="Furulyafogások"></div>
                     </div>
                 </section>
@@ -64,4 +70,5 @@
 
     <?php include '../model/database.php'; ?>
 </body>
+
 </html>

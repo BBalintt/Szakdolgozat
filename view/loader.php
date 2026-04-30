@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
     <script type="module">
         // A felület működéséhez szükséges függvények importálása
-        import {deleteFingering, loadRec, changeView, animateHere, useFilter, vote } from "../viewmodel/change_recorder.js";
+        import { deleteFingering, loadRec, changeView, animateHere, useFilter, vote } from "../viewmodel/change_recorder.js";
 
         // Az importált függvények elérhetővé tétele a HTML eseménykezelők számára
         window.deleteFingering = deleteFingering;
@@ -46,6 +47,7 @@
         });
     </script>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include 'layouts/header.php'; ?>
 
@@ -56,7 +58,8 @@
                     <!-- Furulya kiválasztása -->
                     <form method="POST" id="formContainer" class="mitgard col-12">
                         <label for="chooserec" class="form-label fw-bold">Furulya kiválasztása</label>
-                        <select name="chooserec" id="chooserec" class="form-select" onchange="loadRec(0)" aria-describedby="description">
+                        <select name="chooserec" id="chooserec" class="form-select" onchange="loadRec(0)"
+                            aria-describedby="description">
                             <option value="">Válassz egy furulyát</option>
                         </select>
                     </form>
@@ -64,19 +67,23 @@
                     <!-- A kiválasztott furulya leírása -->
                     <p id="description" class="col-12 mt-3 text-dark" aria-live="polite"></p>
                 </div>
-                
+
                 <!-- Szűrési lehetőségek helye -->
                 <div id="filter" class="midgard col-12" aria-label="Szűrési lehetőségek"></div>
 
                 <!-- Hangok közötti navigáció -->
-                <section id="noteContainer" class="d-flex align-items-center gap-2 col-12" aria-label="Hangok és fogások listája">
-                    <button class="btn btn-outline-secondary" type="button" id="prevBtn" aria-label="Előző hang">‹</button>
-                    
-                    <div id="noteSlider" class="d-flex overflow-auto note-slider" tabindex="0" aria-label="Görgethető hanglista">
+                <section id="noteContainer" class="d-flex align-items-center gap-2 col-12"
+                    aria-label="Hangok és fogások listája">
+                    <button class="btn btn-outline-secondary" type="button" id="prevBtn"
+                        aria-label="Előző hang">‹</button>
+
+                    <div id="noteSlider" class="d-flex overflow-auto note-slider" tabindex="0"
+                        aria-label="Görgethető hanglista">
                         <div id="noteTrack" class="d-flex" role="list" aria-label="Furulyafogások"></div>
                     </div>
 
-                    <button class="btn btn-outline-secondary" type="button" id="nextBtn" aria-label="Következő hang">›</button>
+                    <button class="btn btn-outline-secondary" type="button" id="nextBtn"
+                        aria-label="Következő hang">›</button>
                 </section>
             </div>
         </div>
@@ -87,14 +94,15 @@
         <?php include 'layouts/footer.php'; ?>
     </main>
 
-<?php
+    <?php
     // Fejlesztés közbeni hibamegjelenítés és adatbázis-kapcsolat
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
     include '../model/database.php';
-?>
+    ?>
 
 </body>
+
 </html>

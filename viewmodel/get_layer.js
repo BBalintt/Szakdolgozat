@@ -32,17 +32,7 @@ function getSprite({ hasFog, color, opacity, path, pos, size }) {
 }
 
 // Egy réteg (layer) létrehozása több sprite-ból
-function getLayer({
-  hasFog = true,
-  hue = 0.0,
-  numSprites = 10,
-  opacity = 1,
-  path = "./rad-grad.png",
-  radius = 1,
-  sat = 0.5,
-  size = 1,
-  zOffset = 0,
-}) {
+function getLayer({ hasFog = true, hue = 0.0, numSprites = 10, opacity = 1, path = "./rad-grad.png", radius = 1, sat = 0.5, size = 1, zOffset = 0, }) {
   const layerGroup = new THREE.Group();
 
   for (let i = 0; i < numSprites; i += 1) {

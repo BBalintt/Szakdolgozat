@@ -139,17 +139,17 @@ function renderEditableFingering(data, idx, furulyaRow, pipeCount) {
   col.innerHTML += `
     <div class="row">
       <label class="visually-hidden" for="note${idx}">Hang megadása</label>
-      <div class="col-5"></div>
-      <input type="text" class="col-2" id="note${idx}" class="note${idx}" oninput="inputCheck(event)" aria-label="Hang megadása">
-      <div class="col-5"></div>
+      <div class="col-3"></div>
+      <input type="text" class="col-6" id="note${idx}" class="note${idx}" oninput="inputCheck(event)" aria-label="Hang megadása">
+      <div class="col-3"></div>
     </div>
   `;
 
   col.innerHTML += `
     <div class="row">
-      <div class="col-3"></div>
-      <input type="button" class="col-6" value="Hang mentése" onclick="saveNote(${idx})" aria-label="Hang mentése">
-      <div class="col-3"></div>
+      <div class="col-0"></div>
+      <input type="button" class="col-12" value="Hang mentése" onclick="saveNote(${idx})" aria-label="Hang mentése">
+      <div class="col-0"></div>
       </div>
   `;
 

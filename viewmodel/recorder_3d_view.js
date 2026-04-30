@@ -19,33 +19,32 @@ export function changeView() {
   if (checkbox.checked) {
     rendererFull();
 
-    slider.style.height = parent.clientHeight * 0.5+"px";
+    slider.style.height = parent.clientHeight * 0.5 + "px";
 
     // 3D nézetben a 2D fogáskártyák elrejtése
     for (let fingering of fingerings) {
       fingering.style.height = "0%";
       fingering.style.visibility = "hidden";
       fingering.childNodes.forEach(element => {
-          if (element.nodeType === Node.ELEMENT_NODE) {
-              element.style.visibility = "hidden";
-          }
-        });
+        if (element.nodeType === Node.ELEMENT_NODE) {
+          element.style.visibility = "hidden";
+        }
+      });
     }
   }
   else {
     rendererNull();
 
-    slider.style.height = parent.clientHeight * 2+"px";
+    slider.style.height = parent.clientHeight * 2 + "px";
 
     // 2D nézetben a fogáskártyák visszaállítása
     for (let fingering of fingerings) {
       fingering.style.height = "100%";
-      if (fingering.dataset.hidden!="true") {
+      if (fingering.dataset.hidden != "true") {
         fingering.style.visibility = "visible";
         fingering.childNodes.forEach(element => {
           if (element.nodeType === Node.ELEMENT_NODE) {
-            if(fingering.dataset.hidden!="true")
-            {
+            if (fingering.dataset.hidden != "true") {
               element.style.visibility = "visible";
             }
           }

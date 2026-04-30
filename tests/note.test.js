@@ -26,7 +26,7 @@ describe("drawNote function", () => {
 
 // playNote függvény tesztelése (frekvencia számítás és lejátszás)
 describe("playNote function", () => {
-  const fakePlay = jest.fn(); // Mock lejátszó függvény
+    const fakePlay = jest.fn(); // Mock lejátszó függvény
 
     test("plays a note without accidentals", () => {
         const data = "C";
