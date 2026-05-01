@@ -60,12 +60,20 @@ export async function setupRecorderView(recorderName) {
 
   reset2DView();
 
-  const path = `./resources/${recorderName}.glb`;
-  const exists = await checkFileExists(path);
-
-  if (exists) {
+  let modelname="";
+  if(recorderName.includes('blockflöte'))
+  {
+    modelname='szoprán';
+  }
+  else if(recorderName.includes('ír_furulya'))
+  {
+    modelname='ír_furulya'
+  }
+  const path = `./resources/${modelname}.glb`;
+  
+  if (modelname!="") {
     setSpace();
-    setRecorder(recorderName);
+    setRecorder(modelname);
     rendererNull();
 
     if (sw) {
