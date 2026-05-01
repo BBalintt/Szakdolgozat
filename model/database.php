@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $host = 'mysql.caesar.elte.hu';
 $db = 'hbalintt';
 $user = 'hbalintt';
-$pass = 'rHCIquNiAs1vURiI';
+$pass = 'Jelszó helye';
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 try {
     $pdo = new PDO($dsn, $user, $pass);
